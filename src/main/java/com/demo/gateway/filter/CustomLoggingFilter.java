@@ -1,7 +1,6 @@
 package com.demo.gateway.filter;
 
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -10,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class CustomLoggingGatewayFilterFactory extends AbstractGatewayFilterFactory<CustomLoggingGatewayFilterFactory.Config> {
+public class CustomLoggingFilter extends AbstractGatewayFilterFactory<CustomLoggingFilter.Config> {
 
 
     @Override
@@ -52,7 +51,7 @@ public class CustomLoggingGatewayFilterFactory extends AbstractGatewayFilterFact
     }
 
 
-    public CustomLoggingGatewayFilterFactory() {
+    public CustomLoggingFilter() {
         super(Config.class);
     }
 

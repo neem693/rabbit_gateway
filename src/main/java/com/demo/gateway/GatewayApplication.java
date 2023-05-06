@@ -1,6 +1,6 @@
 package com.demo.gateway;
 
-import com.demo.gateway.filter.CustomLoggingGatewayFilterFactory;
+import com.demo.gateway.filter.CustomLoggingFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -20,11 +20,11 @@ public class GatewayApplication {
 
 
 	@Bean
-	public RouteLocator routeLocator(RouteLocatorBuilder rlb, CustomLoggingGatewayFilterFactory
-			customLoggingGatewayFilterFactory) {
+	public RouteLocator routeLocator(RouteLocatorBuilder rlb, CustomLoggingFilter
+			customLoggingFilter) {
 
-		CustomLoggingGatewayFilterFactory.Config customLoggingGatewayFilterFactoryConfig =
-				CustomLoggingGatewayFilterFactory.Config.builder()
+		CustomLoggingFilter.Config customLoggingGatewayFilterFactoryConfig =
+				CustomLoggingFilter.Config.builder()
 						.service("service-b")
 						.build();
 
@@ -35,7 +35,7 @@ public class GatewayApplication {
 						.path("/microservice-b/**")
 						.filters(f -> f
 								.rewritePath("/microservice-b/(?<segment>.*)", "/$\\{segment}")
-								.filter(customLoggingGatewayFilterFactory.apply(customLoggingGatewayFilterFactoryConfig)))
+								.filter(customLoggingFilter.apply(customLoggingGatewayFilterFactoryConfig)))
 
 						.uri("lb://microservice-b")
 				)

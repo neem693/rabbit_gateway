@@ -15,11 +15,12 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-      routes:
-        - id: serviceB
-          uri: lb://microservice-b
-          predicates:
-            - Path=/microservice-b/**
+#      routes:
+#        - id: serviceB
+#          uri: lb://microservice-b
+#          predicates:
+#            - Path=/microservice-b/**
+# 따로 프로그래밍 적으로 적용하기 때문에 이걸 주석해버리는거임
 
 
 eureka:
