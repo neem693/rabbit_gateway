@@ -1,0 +1,32 @@
+
+server:
+  port: 8085
+
+
+
+
+
+spring:
+  application:
+    name: rabbit_gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: serviceB
+          uri: lb://microservice-b
+          predicates:
+            - Path=/microservice-b/**
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka
+
+#logging:
+#  level:
+#    root: debug
